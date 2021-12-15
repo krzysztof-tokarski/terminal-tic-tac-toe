@@ -15,6 +15,8 @@ player_one = None
 player_two = None
 first = None
 second = None
+moveset = {"1":row1[2],"2":row1[6],"3":row1[10],"4":row2[2],"5":row2[6],"6":row2[10],"7":row3[2],"8":row3[6],"9":row3[10]}
+
 
 row1 = "|   |   |   |"
 row2 = "|   |   |   |"
@@ -30,11 +32,14 @@ def reset_values():
     global row1
     global row2
     global row3
+    global moveset
+
     
     player_one = None
     player_two = None
     first = None
     second = None
+    moveset = {"1":row1[2],"2":row1[6],"3":row1[10],"4":row2[2],"5":row2[6],"6":row2[10],"7":row3[2],"8":row3[6],"9":row3[10]}
     
     row1 = "|   |   |   |"
     row2 = "|   |   |   |"
@@ -187,5 +192,35 @@ def win_condition():
             print(f'Player 2 is the winner! There are three {player_two} in a row!')
 
 
-
+def first_move():
+    
+    global first
+    global second
+    
+    global player_one 
+    global player_two
+    
+    global row1
+    global row2
+    global row3
+    
+    global moveset
+    
+    first_move = None
+    retired = []
+    
+    original_moveset = {"1":row1[2],"2":row1[6],"3":row1[10],"4":row2[2],"5":row2[6],"6":row2[10],"7":row3[2],"8":row3[6],"9":row3[10]}
+    moveset = {"1":row1[2],"2":row1[6],"3":row1[10],"4":row2[2],"5":row2[6],"6":row2[10],"7":row3[2],"8":row3[6],"9":row3[10]}
+    
+    while first_move not in retired:
+        first_move = input(f"Choose where on the board you want to place {first}: ")
+        if first_move not in original_moveset:
+            print("Sorry, I do not understand what you want to do, please try again.") 
+        if first_move not in moveset and first_move in original_moveset:
+            print("Sorry, this position is already taken.")
+        if first_move in moveset:
+            position = moveset.[first_move]
+            position
+            del moveset.[first_move]
+            retired.append(first_move)
 
