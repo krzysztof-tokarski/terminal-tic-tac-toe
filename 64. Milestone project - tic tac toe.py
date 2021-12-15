@@ -1,17 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
-#1.We need to print a board.
-#2.Take in player input.
-#3.Place their input on the board.
-#4.Check if the game is won,tied, lost, or ongoing.
-#5.Repeat c and d until the game has been won or tied.
-#6.Ask if players want to play again.
-
-
 # In[10]:
 
 
@@ -20,7 +9,7 @@ def whitespace():
 
 
 # In[47]:
-
+# VALUES [NOT SURE IF ALL]
 
 player_one = None 
 player_two = None
@@ -32,41 +21,32 @@ row2 = "|   |   |   |"
 row3 = "|   |   |   |"
 
 
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[53]:
+def reset_values():
+    
+    global player_one
+    global player_two
+    global first
+    global second
+    global row1
+    global row2
+    global row3
+    
+    player_one = None
+    player_two = None
+    first = None
+    second = None
+    
+    row1 = "|   |   |   |"
+    row2 = "|   |   |   |"
+    row3 = "|   |   |   |"
 
 
 #Input position are: [2,6,10]
-
-row1 = "|   |   |   |"
-row2 = "|   |   |   |"
-row3 = "|   |   |   |"
 
 def three_rows():
     print(row1)
     print(row2)
     print(row3)
-
-
-# In[28]:
-
-
-print(list(enumerate(row1)))
-
-
-# In[31]:
-
 
 def welcome():
     
@@ -106,19 +86,6 @@ def display_board():
     
     three_rows()
 
-
-# In[142]:
-
-
-display_board()
-
-
-# In[ ]:
-
-
-
-
-
 # In[11]:
 
 
@@ -156,163 +123,7 @@ def marker_designation():
     print(f"Player 1 shall play as {player_one} and Player 2 shall play as {player_two}.")
 
 
-# In[56]:
-
-
-marker_designation()
-
-
-# In[ ]:
-
-
-
-
-
-# In[14]:
-
-
-player_one
-
-
-# In[15]:
-
-
-player_two
-
-
-# In[ ]:
-
-
-
-
-
-# In[18]:
-
-
-def reset_values():
-    
-    global player_one
-    global player_two
-    global first
-    global second
-    global row1
-    global row2
-    global row3
-    
-    player_one = None
-    player_two = None
-    first = None
-    second = None
-    
-    row1 = "|   |   |   |"
-    row2 = "|   |   |   |"
-    row3 = "|   |   |   |"
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[179]:
-
-
-welcome()
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[58]:
-
-
-welcomeboard = "|   |   |   |\n|   |   |   |\n|   |   |   |"
-
-
-# In[59]:
-
-
-welcomeboard.replace("   "," 1 ")
-
-
-# In[ ]:
-
-
-welcomebo
-
-
-# In[54]:
-
-
-welcomeboard
-
-
-# In[16]:
-
-
-player_one
-
-
-# In[17]:
-
-
-player_two
-
-
-# In[ ]:
-
-
-
-
-
 # In[22]:
-
-
-def who_goes_first():
-    
-    global first
-    global second
-    
-    global player_one 
-    global player_two
-    
-    first = random.choice(["X","O"])
-    
-    if random.choice(["X","O"])== "X":
-        first = "X"
-        second = "O"
-        if player_one == first:
-            print(f'Player 1 (playing as {player_one} will go first.')
-        if player_two == first:
-            print (f'Player 2 (playing as {player_two} will go first.')
-    if random.choice(["X","O"])== "O":
-        first = "O"
-        second = "X"
-
-
-# In[ ]:
-
-
-
-
-
-# In[49]:
 
 
 def who_goes_first():
@@ -337,73 +148,6 @@ def who_goes_first():
         second = "O"
     if first == "O":
         second = "X"
-    
-
-
-# In[26]:
-
-
-player_one 
-
-
-# In[27]:
-
-
-player_two
-
-
-# In[44]:
-
-
-who_goes_first()
-
-
-# In[32]:
-
-
-welcome()
-
-
-# In[39]:
-
-
-first
-
-
-# In[42]:
-
-
-player_two
-
-
-# In[45]:
-
-
-first
-
-
-# In[46]:
-
-
-player_two
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 
 
 # In[50]:
@@ -441,69 +185,6 @@ def win_condition():
             print(f'Player 1 is the winner! There are three {player_one} in a row!')
         if sublist[0] == sublist[1] == sublist[2] == player_two:
             print(f'Player 2 is the winner! There are three {player_two} in a row!')
-
-display_board()
-# In[54]:
-
-
-display_board()
-
-
-# In[55]:
-
-
-player_one
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[57]:
-
-
-display_board()
-
-
-# In[60]:
-
-
-row1 = row1.replace("   "," X ")
-
-
-# In[61]:
-
-
-display_board()
-
-
-# In[63]:
-
-
-win_condition()
-
-
-# In[64]:
-
-
-x
-
-
-# In[65]:
-
-
-player_one
-
-
-# In[ ]:
 
 
 
