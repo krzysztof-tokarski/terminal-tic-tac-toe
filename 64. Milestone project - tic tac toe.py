@@ -11,14 +11,25 @@ def whitespace():
 # In[47]:
 # VALUES [NOT SURE IF ALL]
 
-player_one = None 
-player_two = None
-first = None
-second = None
+    global player_one
+    global player_two
+    global first
+    global second
+    global row1
+    global row2
+    global row3
+    global moveset
 
-row1 = "|   |   |   |"
-row2 = "|   |   |   |"
-row3 = "|   |   |   |"
+    player_one = "X"
+    player_two = None
+    first = "X"
+    second = "O"
+    
+    row1 = "|   |   |   |"
+    row2 = "|   |   |   |"
+    row3 = "|   |   |   |"
+    
+    moveset = {"1":row1[2],"2":row1[6],"3":row1[10],"4":row2[2],"5":row2[6],"6":row2[10],"7":row3[2],"8":row3[6],"9":row3[10]}
 
 
 def reset_values():
@@ -39,7 +50,8 @@ def reset_values():
     row1 = "|   |   |   |"
     row2 = "|   |   |   |"
     row3 = "|   |   |   |"
-
+    
+    moveset = {"1":row1[2],"2":row1[6],"3":row1[10],"4":row2[2],"5":row2[6],"6":row2[10],"7":row3[2],"8":row3[6],"9":row3[10]}
 
 #Input position are: [2,6,10]
 
@@ -157,6 +169,8 @@ def who_goes_first():
 
 def win_condition():
     
+    whitespace()
+    
     global first
     global second
     
@@ -166,6 +180,15 @@ def win_condition():
     global row1
     global row2
     global row3
+    
+    row1 = [char for char in row1]
+    row2 = [char for char in row2]
+    row3 = [char for char in row3]
+    
+    transit1 = ''
+    transit2 = ''
+    transit3 = ''
+
     
     WinFlatOne = [row1[2], row1[6], row1[10]]
     WinFlatTwo = [row2[2], row2[6], row2[10]]
@@ -185,7 +208,205 @@ def win_condition():
             print(f'Player 1 is the winner! There are three {player_one} in a row!')
         if sublist[0] == sublist[1] == sublist[2] == player_two:
             print(f'Player 2 is the winner! There are three {player_two} in a row!')
+            
+    row1 = transit1.join(row1)
+    row2 = transit2.join(row2)
+    row3 = transit3.join(row3)
+    
+    whitespace()
 
 
+def first_move():
+    
+    whitespace()
+    
+    global first
+    global second
+    
+    global player_one 
+    global player_two
+    
+    global row1
+    global row2
+    global row3
+    
+    global moveset
+    
+    first_move = None
+    retired = []
+    
+    transit = ''
+    
+    #ROWS TO LISTS AND BACK TO STRINGS
+    
+    original_moveset = {"1":row1[2],"2":row1[6],"3":row1[10],"4":row2[2],"5":row2[6],"6":row2[10],"7":row3[2],"8":row3[6],"9":row3[10]}
+    
+    while first_move not in retired:
+        first_move = input(f"Choose where on the board you want to place {first}: ")
+        if first_move not in original_moveset:
+            print("Sorry, I do not understand what you want to do, please try again.") 
+            whitespace()
+        if first_move not in moveset and first_move in original_moveset:
+            print("Sorry, this position is already taken.")
+            whitespace()
+        if first_move in moveset:
+            if first_move == "1":
+                row1 = [char for char in row1]
+                row1[2] = first
+                row1 = transit.join(row1)
+                retired.append(first_move)
+                moveset.pop(first_move)
+            if first_move == "2":
+                row1 = [char for char in row1]
+                row1[6] = first
+                row1 = transit.join(row1)
+                retired.append(first_move)
+                moveset.pop(first_move)
+            if first_move == "3":
+                row1 = [char for char in row1]
+                row1[10] = first
+                row1 = transit.join(row1)
+                retired.append(first_move)
+                moveset.pop(first_move)
+            if first_move == "4":
+                row2 = [char for char in row2]
+                row2[2] = first
+                row2 = transit.join(row2)
+                retired.append(first_move)
+                moveset.pop(first_move)
+            if first_move == "5":
+                row2 = [char for char in row2]
+                row2[6] = first
+                row2 = transit.join(row2)
+                retired.append(first_move)
+                moveset.pop(first_move)
+            if first_move == "6":
+                row2 = [char for char in row2]
+                row2[10] = first
+                row2 = transit.join(row2)
+                retired.append(first_move)
+                moveset.pop(first_move)
+            if first_move == "7":
+                row3 = [char for char in row3]
+                row3[2] = first
+                row3 = transit.join(row3)
+                retired.append(first_move)
+                moveset.pop(first_move)
+            if first_move == "8":
+                row3 = [char for char in row3]
+                row3[6] = first
+                row3 = transit.join(row3)
+                retired.append(first_move)
+                moveset.pop(first_move)
+            if first_move == "9":
+                row3 = [char for char in row3]
+                row3[10] = first
+                row3 = transit.join(row3)
+                retired.append(first_move)
+                moveset.pop(first_move)
+        
+    whitespace()
+    
+    display_board()
+    
+    whitespace()
+    
+    win_condition()
 
+    
+def second_move():
+    
+    whitespace()
+    
+    global first
+    global second
+    
+    global player_one 
+    global player_two
+    
+    global row1
+    global row2
+    global row3
+    
+    global moveset
+    
+    second_move = None
+    retired = []
+    
+    transit = ''
+    
+    #ROWS TO LISTS AND BACK TO STRINGS
+    
+    original_moveset = {"1":row1[2],"2":row1[6],"3":row1[10],"4":row2[2],"5":row2[6],"6":row2[10],"7":row3[2],"8":row3[6],"9":row3[10]}
+    
+    while second_move not in retired:
+        second_move = input(f"Choose where on the board you want to place {second}: ")
+        if second_move not in original_moveset:
+            print("Sorry, I do not understand what you want to do, please try again.") 
+            whitespace()
+        if second_move not in moveset and second_move in original_moveset:
+            print("Sorry, this position is already taken.")
+            whitespace()
+        if second_move in moveset:
+            if second_move == "1":
+                row1 = [char for char in row1]
+                row1[2] = second
+                row1 = transit.join(row1)
+                retired.append(second_move)
+                moveset.pop(second_move)
+            if second_move == "2":
+                row1 = [char for char in row1]
+                row1[6] = second
+                row1 = transit.join(row1)
+                retired.append(second_move)
+                moveset.pop(second_move)
+            if second_move == "3":
+                row1 = [char for char in row1]
+                row1[10] = second
+                row1 = transit.join(row1)
+                retired.append(second_move)
+                moveset.pop(second_move)
+            if second_move == "4":
+                row2 = [char for char in row2]
+                row2[2] = second
+                row2 = transit.join(row2)
+                retired.append(second_move)
+                moveset.pop(second_move)
+            if second_move == "5":
+                row2 = [char for char in row2]
+                row2[6] = second
+                row2 = transit.join(row2)
+                retired.append(second_move)
+                moveset.pop(second_move)
+            if second_move == "6":
+                row2 = [char for char in row2]
+                row2[10] = second
+                row2 = transit.join(row2)
+                retired.append(second_move)
+                moveset.pop(second_move)
+            if second_move == "7":
+                row3 = [char for char in row3]
+                row3[2] = second
+                row3 = transit.join(row3)
+                retired.append(second_move)
+                moveset.pop(second_move)
+            if second_move == "8":
+                row3 = [char for char in row3]
+                row3[6] = second
+                row3 = transit.join(row3)
+                retired.append(second_move)
+                moveset.pop(second_move)
+            if second_move == "9":
+                row3 = [char for char in row3]
+                row3[10] = second
+                row3 = transit.join(row3)
+                retired.append(second_move)
+                moveset.pop(second_move)
+        
+    whitespace()
+    
+    display_board()
+    
+    whitespace()
 
+    win_condition()
